@@ -56,7 +56,7 @@ jobs:
         run: npm start
         working-directory: ./server-js
         env:
-          postgres://backend:postgres@postgres:5432/todo_managertest
+          DATABASE: postgres://backend:postgres@postgres:5432/todo_managertest
 
       - name: Start frontend
         run: npm start
