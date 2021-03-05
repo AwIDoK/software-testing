@@ -53,18 +53,19 @@ jobs:
           POSTGRES_PORT: 5432
 
       - name: Start backend
-          run: npm start
-          working-directory: ./server-js
-          env:
-            postgres://backend:postgres@postgres:5432/todo_managertest
+        run: npm start
+        working-directory: ./server-js
+        env:
+          postgres://backend:postgres@postgres:5432/todo_managertest
+
       - name: Start frontend
-          run: npm start
-          working-directory: ./client
+        run: npm start
+        working-directory: ./client
 
       - name: Run tests
-          run: npm test
-          working-directory: ./client
+        run: npm test
+        working-directory: ./client
 
       - name: Run cypress tests
-          run: npm test-cypress
-          working-directory: ./client
+        run: npm test-cypress
+        working-directory: ./client
