@@ -2,6 +2,35 @@ import { Component } from 'react'
 import './Home.css'
 import { MdDelete } from 'react-icons/md'
 
+const ItemList = ({ parent, item }) => (
+    <div key={item.list_id} className="list">
+        <span>
+            <a href={"/todo/" + item.list_id}>{item.name}</a>
+        </span>
+        <span>
+            <MdDelete onClick={parent.deleteList.bind(parent, item.list_id)} size={20}/>
+        </span>
+    </div>
+);
+
+const NewTodo = ({}) => (
+    <>
+    <h3>Add new todo list:</h3>
+    <form method="POST" action="/api/todo">
+        <table>
+            <tbody>
+                <tr>
+                    <td><label>Name:</label></td>
+                    <td><input type="text" name="name"/></td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="add"/>
+    </form>
+    </>
+)
+
+
 class Home extends Component {
     constructor() {
         super()
@@ -18,29 +47,11 @@ class Home extends Component {
             <h3>Todo Lists:</h3>
             <div className="lists">
                     {this.state.items.map(item => (
-                            <div key={item.list_id} className="list">
-                                <span>
-                                    <a href={"/todo/" + item.list_id}>{item.name}</a>
-                                </span>
-                                <span>
-                                    <MdDelete onClick={this.deleteList.bind(this, item.list_id)} size={20}/>
-                                </span>
-                            </div>
+                            <ItemList item={item} parent={this}/>
                         )
                     )}
             </div>
-            <h3>Add new todo list:</h3>
-            <form method="POST" action="/api/todo">
-                <table>
-                    <tbody>
-                    <tr>
-                        <td><label>Name:</label></td>
-                        <td><input type="text" name="name"/></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <input type="submit" value="add"/>
-            </form>
+            <NewTodo />
             </div>
         )
     }
