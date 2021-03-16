@@ -78,10 +78,12 @@ test('mark todo', async () => {
             const context = await browser.newContext();
             const page = await context.newPage();
             await page.goto(URL);
+            await page.waitForSelector("a")
             await page.click('a');
+            await page.waitForSelector(".done")
             await page.click(':nth-child(2) > span > .link-button');
             await page.reload();
-            await page.waitForSelector(".link-button")
+            await page.waitForSelector(".done")
             expect((await page.$$(".done")).length).toBe(2);
             await browser.close();
         }
