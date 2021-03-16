@@ -64,10 +64,12 @@ jobs:
       - name: Start frontend
         run: npm start &
         working-directory: ./client
-        
+
       - name: Run cypress tests
-        run: npm test-cypress
+        run: npm run test-cypress
         working-directory: ./client
+        with:
+          wait-on: 'http://localhost:3000'
 
       - name: Run tests
         run: npm test
