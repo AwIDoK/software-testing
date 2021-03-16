@@ -57,21 +57,18 @@ jobs:
 
       - name: Start backend
         run: npm start &
-        working-directory: ./server-js
+        working-directory: server-js
         env:
           DATABASE: postgres://postgres:postgres@postgres:5432/todo_managertest
 
-      - name: Wait for frontend to start
-        uses: cypress-io/github-action@v2
-        working-directory: ./client
-        with:
-          start: npm start
-          wait-on: 'http://localhost:3000'
-
-      - name: Run cypress tests
-        run: npm run test-cypress
-        working-directory: ./client
+      - name: Start frontend
+        run: npm start &
+        working-directory: client
 
       - name: Run tests
         run: npm test
-        working-directory: ./client
+        working-directory: client
+
+      - name: Run cypress tests
+        run: npm test-cypress
+        working-directory: client
