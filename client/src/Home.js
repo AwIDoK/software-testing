@@ -3,7 +3,7 @@ import './Home.css'
 import { MdDelete } from 'react-icons/md'
 
 const ItemList = ({ parent, item }) => (
-    <div key={item.list_id} className="list">
+    <div className="list">
         <span>
             <a href={"/todo/" + item.list_id}>{item.name}</a>
         </span>
@@ -47,7 +47,7 @@ class Home extends Component {
             <h3>Todo Lists:</h3>
             <div className="lists">
                     {this.state.items.map(item => (
-                            <ItemList item={item} parent={this}/>
+                            <ItemList item={item} parent={this} key={item.list_id}/>
                         )
                     )}
             </div>
