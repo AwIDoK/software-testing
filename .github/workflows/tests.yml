@@ -65,7 +65,7 @@ jobs:
         run: npm start &
         working-directory: ./client
 
-       - name: Wait for frontend to start
+      - name: Wait for frontend to start
         uses: cypress-io/github-action@v2
         with:
           start: npm start
