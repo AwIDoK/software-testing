@@ -1,7 +1,7 @@
 const { Client } = require('pg');
 
 async function createTestDatabase() {
-    const pgclient = new Client({
+    const client = new Client({
         host: process.env.POSTGRES_HOST,
         port: process.env.POSTGRES_PORT,
         user: 'postgres',
