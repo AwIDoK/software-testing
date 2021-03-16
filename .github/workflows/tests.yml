@@ -55,13 +55,13 @@ jobs:
           POSTGRES_PORT: 5432
 
       - name: Start backend
-        run: npm start
+        run: npm start &
         working-directory: ./server-js
         env:
           DATABASE: postgres://postgres:postgres@postgres:5432/todo_managertest
 
       - name: Start frontend
-        run: npm start
+        run: npm start &
         working-directory: ./client
 
       - name: Run tests
