@@ -58,11 +58,12 @@ jobs:
         working-directory: server-js
         env:
           DATABASE: postgres://postgres:postgres@postgres:5432/todo_managertest
+      
+      - name: Run cypress tests
+        run: npm test-cypress
+        working-directory: client
 
       - name: Run tests
         run: npm test
         working-directory: client
 
-      - name: Run cypress tests
-        run: npm test-cypress
-        working-directory: client
