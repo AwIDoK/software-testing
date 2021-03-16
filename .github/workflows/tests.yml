@@ -7,7 +7,7 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: node:15-alpine3.10
+    container: node:14.16.0-alpine3.12
 
     # Service containers to run with `container-job`
     services:
