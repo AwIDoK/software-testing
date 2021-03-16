@@ -66,7 +66,7 @@ jobs:
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
-        working-directory: ./client
+          working-directory: ./client
 
       - name: Run cypress tests
         run: npm run test-cypress
