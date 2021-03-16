@@ -9,9 +9,7 @@ async function createTestDatabase() {
         database: 'todo_managertest'
     });
     await client.connect();
-    await client.query("DROP TABLE Todos;\n" +
-        "DROP TABLE Lists;\n" +
-        "CREATE TABLE Lists (\n" +
+    await client.query("CREATE TABLE Lists (\n" +
         "    list_id SERIAL not null,\n" +
         "    name varchar(50) not null,\n" +
         "    primary key (list_id)\n" +
