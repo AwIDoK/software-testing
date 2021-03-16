@@ -64,11 +64,11 @@ jobs:
       - name: Start frontend
         run: npm start &
         working-directory: ./client
+        
+      - name: Run cypress tests
+        run: npm test-cypress
+        working-directory: ./client
 
       - name: Run tests
         run: npm test
-        working-directory: ./client
-
-      - name: Run cypress tests
-        run: npm test-cypress
         working-directory: ./client
