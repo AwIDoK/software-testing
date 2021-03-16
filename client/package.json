@@ -43,6 +43,7 @@
     "proxy": "http://localhost:3001",
     "devDependencies": {
         "axios": "^0.21.1",
+        "cypress": "^6.7.1",
         "jest-fetch-mock": "^3.0.3",
         "playwright": "^1.9.1"
     }
