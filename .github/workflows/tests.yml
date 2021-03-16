@@ -63,10 +63,10 @@ jobs:
 
       - name: Wait for frontend to start
         uses: cypress-io/github-action@v2
+        working-directory: ./client
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
-          working-directory: ./client
 
       - name: Run cypress tests
         run: npm run test-cypress
