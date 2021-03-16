@@ -61,15 +61,12 @@ jobs:
         env:
           DATABASE: postgres://postgres:postgres@postgres:5432/todo_managertest
 
-      - name: Start frontend
-        run: npm start &
-        working-directory: ./client
-
       - name: Wait for frontend to start
         uses: cypress-io/github-action@v2
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
+        working-directory: ./client
 
       - name: Run cypress tests
         run: npm run test-cypress
