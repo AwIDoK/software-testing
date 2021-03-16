@@ -60,7 +60,7 @@ jobs:
           DATABASE: postgres://postgres:postgres@postgres:5432/todo_managertest
       
       - name: Run cypress tests
-        run: npm test-cypress
+        run: npm run test-cypress
         working-directory: client
 
       - name: Run tests
