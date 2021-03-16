@@ -3,11 +3,9 @@ on: push
 
 jobs:
   # Label of the container job
-  container-job:
+  tests:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
-    # Docker Hub image that `container-job` executes in
-    container: node:14.16.0-alpine3.12
 
     # Service containers to run with `container-job`
     services:
@@ -29,6 +27,15 @@ jobs:
           -i
 
     steps:
+
+      # Install node js
+
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+
       # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         uses: actions/checkout@v2
