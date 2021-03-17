@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create Postgresql tables
-        run: npm install pg && node script.js
+        run: npm install pg && node prepare_test_data.js
         working-directory: ./database
         env:
           POSTGRES_HOST: localhost
