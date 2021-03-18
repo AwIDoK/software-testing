@@ -12,3 +12,11 @@ CREATE TABLE IF NOT EXISTS Todos (
     primary key (todo_id),
     foreign key (list_id) REFERENCES Lists (list_id) on delete cascade
 );
+
+CREATE TABLE IF NOT EXISTS Users (
+    user_id SERIAL not null,
+    username varchar(50) not null,
+    password varchar(64) not null,
+    primary key (user_id),
+    unique(username)
+);
