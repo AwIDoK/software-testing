@@ -57,7 +57,7 @@ class Home extends Component {
     }
 
     deleteList(id) {
-        fetch('http://localhost:3001/api/todo/list/' + id, {
+        fetch('/api/todo/list/' + id, {
             method: 'DELETE'
         }).then(response => {
             if (response.status !== 200) {
@@ -69,7 +69,7 @@ class Home extends Component {
     }
 
     fetchData() {
-        fetch(`http://localhost:3001/api/todo/`, {
+        fetch(`/api/todo/`, {
             accept: 'application/json',
         }).then(response => {
             if (response.status !== 200) {
