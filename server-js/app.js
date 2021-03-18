@@ -3,6 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const basicAuth = require('express-basic-auth');
+const { Client } = require('pg');
+
+var crypto = require('crypto');
+
 
 var todoRouter = require('./routes/todo');
 
@@ -10,6 +15,22 @@ var app = express();
 
 var cors = require('cors');
 app.use(cors())
+
+async function authorizer(username, password, cb) {
+    console.log(process.env.DATABASE.endsWith('test'))
+    if (process.env.DATABASE.endsWith('test') && username === 'test' && password === 'test') {
+        return cb(null, true);
+    }
+    var passwordHash = crypto.createHash('sha256').update(username + ":" + password).digest('hex');
+    const client = new Client(process.env.DATABASE);
+    await client.connect();
+    const result = await client.query("SELECT count(*) FROM Users WHERE username=$1 AND password=$2", [username, passwordHash]);
+    await client.end();
+    return cb(null, result.rows[0].count == 1);
+}
+ 
+app.use(basicAuth( { authorizer: authorizer, challenge: true, authorizeAsync: true} ))
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
