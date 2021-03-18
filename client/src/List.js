@@ -41,7 +41,7 @@ class List extends Component {
     }
 
     markTodo(id, completed) {
-        fetch('http://localhost:3001/api/todo/list/' + this.props.match.params.id + "/mark", {
+        fetch('/api/todo/list/' + this.props.match.params.id + "/mark", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -61,7 +61,7 @@ class List extends Component {
     }
 
     fetchData() {
-        fetch(`http://localhost:3001/api/todo/list/` + this.props.match.params.id, {
+        fetch(`/api/todo/list/` + this.props.match.params.id, {
             accept: 'application/json',
         }).then(response => {
             if (response.status !== 200) {
