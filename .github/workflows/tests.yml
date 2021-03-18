@@ -1,5 +1,13 @@
 name: client tests with postgres and backend
-on: push
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
 
 jobs:
   tests:
