@@ -10,12 +10,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.PostgreSQLContainer;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @ContextConfiguration(initializers = {TodoListsJdbcDaoTest.Initializer.class})
-class TodoListsJdbcDaoTest {
+public class TodoListsJdbcDaoTest {
     final private static PostgreSQLContainer<?> sqlContainer;
 
     static {
@@ -23,7 +24,8 @@ class TodoListsJdbcDaoTest {
                 .withDatabaseName("todo_managertest")
                 .withUsername("postgres")
                 .withPassword("postgres")
-                .withInitScript("db.sql");;
+                .withInitScript("db.sql");
+        ;
         sqlContainer.start();
     }
 
@@ -42,13 +44,13 @@ class TodoListsJdbcDaoTest {
 
     @Test
     @Transactional
-    void getTodoListsTest() {
+    public void getTodoListsTest() {
         assertEquals(3, todoListsDao.getTodoLists().size());
     }
 
     @Test
     @Transactional
-    void addListTest() {
+    public void addListTest() {
         TodoList todoList = new TodoList("name");
         todoListsDao.addTodoList(todoList);
         assertEquals(4, todoListsDao.getTodoLists().size());
@@ -56,9 +58,8 @@ class TodoListsJdbcDaoTest {
 
     @Test
     @Transactional
-    void markTodoListTest() {
+    public void markTodoListTest() {
         todoListsDao.markTodo(1, true);
         assertTrue(todoListsDao.getTodoList(1).get(0).isCompleted());
     }
-
 }

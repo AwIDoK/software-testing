@@ -17,7 +17,6 @@ var cors = require('cors');
 app.use(cors())
 
 async function authorizer(username, password, cb) {
-    console.log(process.env.DATABASE.endsWith('test'))
     if (process.env.DATABASE.endsWith('test') && username === 'test' && password === 'test') {
         return cb(null, true);
     }
