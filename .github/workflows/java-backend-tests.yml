@@ -16,6 +16,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 15
-      - name: Build with Maven
+      - name: Run tests with Maven
         run: mvn test
         working-directory: server-java
