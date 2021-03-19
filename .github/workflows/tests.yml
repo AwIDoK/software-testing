@@ -78,8 +78,6 @@ jobs:
         uses: Xotabu4/selenoid-github-action@v1   
 
       - name: Run selenide tests
-        run: mvn test
+        run: mvn test -Dselenide.remote=http://localhost:4444/wd/hub
         working-directory: selenide
-        env:
-          selenide.remote: http://localhost:4444/wd/hub
 
