@@ -80,4 +80,6 @@ jobs:
       - name: Run selenide tests
         run: mvn test
         working-directory: selenide
+        env:
+          selenide.remote: http://localhost:4444/wd/hub
 
