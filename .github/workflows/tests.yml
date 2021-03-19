@@ -69,3 +69,12 @@ jobs:
         run: npm run test:playwright
         working-directory: client
 
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+
+      - name: Run selenide tests
+        run: mvn test
+        working-directory: selenide
+
