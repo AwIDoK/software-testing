@@ -1,12 +1,11 @@
-package com.awidok.todomanager.dao;
+package com.awidok.todo.dao;
 
-import com.awidok.todomanager.model.Todo;
-import com.awidok.todomanager.model.TodoList;
+import com.awidok.todo.model.Todo;
+import com.awidok.todo.model.TodoList;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 
 

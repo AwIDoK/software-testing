@@ -1,4 +1,4 @@
-package com.awidok.todomanager.model;
+package com.awidok.todo.model;
 
 public class Todo {
     int todo_id;

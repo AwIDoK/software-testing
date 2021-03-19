@@ -1,6 +1,6 @@
-package com.awidok.todomanager.dao;
+package com.awidok.todo.dao;
 
-import com.awidok.todomanager.model.TodoList;
+import com.awidok.todo.model.TodoList;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

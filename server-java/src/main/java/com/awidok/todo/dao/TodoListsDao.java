@@ -1,7 +1,7 @@
-package com.awidok.todomanager.dao;
+package com.awidok.todo.dao;
 
-import com.awidok.todomanager.model.Todo;
-import com.awidok.todomanager.model.TodoList;
+import com.awidok.todo.model.Todo;
+import com.awidok.todo.model.TodoList;
 
 import java.util.List;
 

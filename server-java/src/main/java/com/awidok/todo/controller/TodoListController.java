@@ -1,8 +1,8 @@
-package com.awidok.todomanager.controller;
+package com.awidok.todo.controller;
 
-import com.awidok.todomanager.dao.TodoListsDao;
-import com.awidok.todomanager.model.Todo;
-import com.awidok.todomanager.model.TodoList;
+import com.awidok.todo.dao.TodoListsDao;
+import com.awidok.todo.model.Todo;
+import com.awidok.todo.model.TodoList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
