@@ -2,9 +2,11 @@ import com.codeborne.selenide.AuthenticationType;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Credentials;
 import com.codeborne.selenide.WebDriverRunner;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,6 +19,12 @@ import static com.codeborne.selenide.Condition.*;
 
 
 public class IntegrationTests {
+    @BeforeAll() public static void beforeAll () {
+        Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.browser = "firefox";
+    }
+
+
     @BeforeEach
     public void before() {
         reset();

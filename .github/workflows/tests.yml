@@ -25,11 +25,6 @@ jobs:
           -i
         ports:
           - 5432:5432
-      selenoid:
-        # Docker Hub image
-        image: selenoid/vnc:firefox_86.0
-        ports:
-          - 4444:4444
 
     steps:
 
@@ -78,6 +73,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 15
+
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v1
 
       - name: Run selenide tests
         run: mvn test -Dselenide.remote=http://localhost:4444/wd/hub
