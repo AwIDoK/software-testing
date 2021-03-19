@@ -83,5 +83,5 @@ jobs:
         run: mvn test -Dselenide.remote=http://localhost:4444/wd/hub -Dselenide.browser=chrome
         working-directory: selenide
         env:
-          HOST: host.docker.internal
+          HOST: 172.17.0.1
 
