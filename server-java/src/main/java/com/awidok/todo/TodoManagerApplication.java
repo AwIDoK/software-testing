@@ -1,4 +1,4 @@
-package com.awidok.todomanager;
+package com.awidok.todo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
