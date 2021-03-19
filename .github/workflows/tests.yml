@@ -58,11 +58,11 @@ jobs:
           DATABASE: postgres://postgres:postgres@localhost:5432/todo_managertest
 
       - name: Run unit tests
-        run: npm test:unit
+        run: npm run test:unit
         working-directory: client
 
-      - name: Run unit tests
-        run: npm test:unit
+      - name: Run cypress tests
+        run: npm run test:cypress
         working-directory: client
 
       - name: Run playwright tests
