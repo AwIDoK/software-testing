@@ -27,10 +27,8 @@ async function authorizer(username, password, cb) {
 
 function shouldAuthenticate(req) {
     if (process.env.DATABASE.endsWith('test') && req.headers.authorization === undefined) {
-        console.log("false")
         return false;
     }
-    console.log("true")
     return true
 }
 
