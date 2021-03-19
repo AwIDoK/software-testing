@@ -19,11 +19,14 @@ import static com.codeborne.selenide.Condition.*;
 
 
 public class IntegrationTests {
+    private static String URL;
     @BeforeAll() public static void beforeAll () {
-        Configuration.remote = "http://localhost:4444/wd/hub";
-        Configuration.browser = "chrome";
+        String host = System.getenv("HOST");
+        if (host == null) {
+            host = "localhost";
+        }
+        URL = "http://" + host + ":3000/";
     }
-
 
     @BeforeEach
     public void before() {
@@ -31,7 +34,7 @@ public class IntegrationTests {
     }
     private void reset() {
         try {
-            URL url = new URL("http://localhost:3001/api/todo/reset");
+            URL url = new URL(URL + "api/todo/reset");
             URLConnection con;
             con = url.openConnection();
             HttpURLConnection http = (HttpURLConnection)con;
@@ -50,20 +53,20 @@ public class IntegrationTests {
     }
     @Test
     public void shouldLoadListOfLists() {
-        open("http://localhost:3000/");
+        open(URL);
         $("a").shouldHave(text("list1"));
     }
 
     @Test
     public void shouldLoadTodoList() {
-        open("http://localhost:3000/");
+        open(URL);
         $("a").click();
         $("button").shouldHave(text("todo1"));
     }
 
     @Test
     public void shouldAddNewList() {
-        open("http://localhost:3000/");
+        open(URL);
         $(":nth-child(2) > input").setValue("test_list");
         $("[type=\"submit\"]").click();
         $$("a").last().shouldHave(text("test_list"));
@@ -71,7 +74,7 @@ public class IntegrationTests {
 
     @Test
     public void shouldAddNewTodo() {
-        open("http://localhost:3000/todo/1");
+        open(URL + "todo/1");
         $(":nth-child(2) > input").setValue("test_todo");
         $("[type=\"submit\"]").click();
         $$("button").last().shouldHave(text("test_todo"));
@@ -79,14 +82,14 @@ public class IntegrationTests {
 
     @Test
     public void shouldDeleteList() {
-        open("http://localhost:3000/");
+        open(URL);
         $("svg").click();
         $$("a").shouldHaveSize(2);
     }
 
     @Test
     public void shouldMarkTodo() {
-        open("http://localhost:3000/todo/1");
+        open(URL + "todo/1");
         $("button").click();
         $$(".done").shouldHaveSize(2);
     }
