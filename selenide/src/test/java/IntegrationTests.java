@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Condition.*;
 public class IntegrationTests {
     @BeforeAll() public static void beforeAll () {
         Configuration.remote = "http://localhost:4444/wd/hub";
-        Configuration.browser = "firefox";
+        Configuration.browser = "chrome";
     }
 
 
