@@ -10,19 +10,8 @@ const playwright = require('playwright');
 
 const URL = "http://127.0.0.1:3000";
 
-const TEST_CREDENTIALS = {
-    httpCredentials: {
-        username: 'admin',
-        password: 'admin',
-    }
-}
-
 async function reset() {
-    await axios.post(URL + "/api/todo/reset", {}, {auth: {
-        username: 'test',
-        password: 'test'
-      }}
-    )
+    await axios.post(URL + "/api/todo/reset")
 }
 
 
@@ -34,7 +23,7 @@ jest.setTimeout(100000)
 test('screenshots of home page', async() => {
     for (const browserType of browsers) {
         const browser = await playwright[browserType].launch();
-        const context = await browser.newContext(TEST_CREDENTIALS);
+        const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(URL);
         await page.screenshot({ path: `home-${browserType}.png` });
@@ -45,7 +34,7 @@ test('screenshots of home page', async() => {
 test('screenshots of home page', async() => {
     for (const browserType of browsers) {
         const browser = await playwright[browserType].launch();
-        const context = await browser.newContext(TEST_CREDENTIALS);
+        const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(URL);
         await page.fill('input', 'test_list' + browserType);
@@ -58,7 +47,7 @@ test('screenshots of home page', async() => {
 test('open list', async() => {
     for (const browserType of browsers) {
         const browser = await playwright[browserType].launch();
-        const context = await browser.newContext(TEST_CREDENTIALS);
+        const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(URL);
         await page.click('a');
@@ -71,7 +60,7 @@ test('delete list', async() => {
     for (const browserType of browsers) {
         await reset();
         const browser = await playwright[browserType].launch();
-        const context = await browser.newContext(TEST_CREDENTIALS);
+        const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(URL);
         await page.waitForSelector("svg")
@@ -88,7 +77,7 @@ test('mark todo', async () => {
         for (const browserType of browsers) {
             await reset();
             const browser = await playwright[browserType].launch();
-            const context = await browser.newContext(TEST_CREDENTIALS);
+            const context = await browser.newContext();
             const page = await context.newPage();
             await page.goto(URL);
             await page.waitForSelector("a")

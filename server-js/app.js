@@ -17,9 +17,6 @@ var cors = require('cors');
 app.use(cors())
 
 async function authorizer(username, password, cb) {
-    if (process.env.DATABASE.endsWith('test') && username === 'test' && password === 'test') {
-        return cb(null, true);
-    }
     var passwordHash = crypto.createHash('sha256').update(username + ":" + password).digest('hex');
     const client = new Client(process.env.DATABASE);
     await client.connect();
@@ -27,9 +24,20 @@ async function authorizer(username, password, cb) {
     await client.end();
     return cb(null, result.rows[0].count == 1);
 }
- 
-app.use(basicAuth( { authorizer: authorizer, challenge: true, authorizeAsync: true} ))
 
+function shouldAuthenticate(req) {
+    if (process.env.DATABASE.endsWith('test') && req.headers.authorization === undefined) {
+        console.log("false")
+        return false;
+    }
+    console.log("true")
+    return true
+}
+
+const basicAuthMiddleware = basicAuth( { authorizer: authorizer, challenge: true, authorizeAsync: true} )
+
+
+app.use((req, res, next) => shouldAuthenticate(req) ? basicAuthMiddleware(req, res, next) : next());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
