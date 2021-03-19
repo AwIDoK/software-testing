@@ -1,22 +1,13 @@
 const URL = "http://localhost:3000/"
 
-const TEST_CREDENTIALS = {
-    username: 'test',
-    password: 'test'
-}
-
 describe("normal tests", () => {
 beforeEach(() => {
     cy.request({
         "url": URL + "api/todo/reset",
-        "method": "POST",
-        auth: TEST_CREDENTIALS
+        "method": "POST"
     });
-    cy.visit(URL,
-        {
-            auth: TEST_CREDENTIALS
-        }
-    );
+
+    cy.visit(URL);
 });
 it('add new list', () => {
     cy.get(':nth-child(2) > input').type("test_list");
