@@ -20,7 +20,7 @@
         "build": "react-scripts build",
         "test:unit": "react-scripts test --runInBand --testPathIgnorePatterns=playwright",
         "test:cypress": "npx cypress run --spec cypress/specs/spec.js",
-        "test:playwright": "react-scripts test --runInBand playwright/playwright.test.js",
+        "test:playwright": "jest --runInBand playwright/playwright.test.js",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
